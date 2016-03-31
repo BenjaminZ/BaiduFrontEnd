@@ -1,0 +1,80 @@
+#logo{
+	padding:10px 40px;
+	display:inline-block;
+}
+header ul{
+	float:right;
+}
+header li {
+	float:left;
+	margin-right:30px;
+}
+header a{
+	text-decoration:none;
+	color:white;
+}
+body{
+	background:lightgrey;
+}
+footer{
+	text-align:center;
+	display:block;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.articles{
+	border-style: outset;
+	border-top: thin;		
+	border-left: thin;
+	background:white;
+	margin:20px 20px;			
+	padding: 20px 15px;
+}
+#pictures>p{
+	border: solid thin;
+	display: inline-block;
+	padding:10px;	
+	text-align: center;
+	margin-left: 40px;
+}
+#articleWeapons>table{
+	border:thin solid lightgrey;
+	border-collapse:collapse;
+}
+#articleWeapons th{
+	border:thin solid lightgrey;
+	text-align:left;
+}
+#articleWeapons td{
+	border:thin solid lightgrey;
+}
+#information{
+   font-size:12px;
+}   
+#information>h1{
+	border-left:solid grey;
+	padding-left:5px;
+}
+.setRight{
+	text-align:right;
+}
+#btnSubmit{
+	width:100%;
+	font-size:16px;
+	background-color:blue;
+	border-radius:8px;
+	color:white;
+}
+.setGrey{
+	color:grey;
+}
+.firstTd{
+	width:30%;
+}
+.secondTd{
+	width:70%
+}
+.bBlackFWhite{
+	background:black;
+	color:white;
+}

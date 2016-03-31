@@ -4,20 +4,20 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="copyright" content="benjamin"/>
 		<title>MHX Information</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
 	</head>
 
 	<body>
-		<header>
-			<h1>Monster Hunter Information</h1>
-			<hr />
-			<p>
+		<header class="bBlackFWhite">
+			<img src="../res/logo_top_ca79a146.png" id="logo"/>
 			<ul>
 				<li><a href="#articleBlangonga">Blangonga</a></li>
 				<li><a href="#articleTigrex">Tigrex</a></li>
 				<li><a href="#pictures">Pictures</a></li>
 				<li><a href="#articleWeapons">Prefered Weapons</a></li>
 			</ul>
-		<div id="articleBlangonga">
+		</header>
+		<div id="articleBlangonga" class="articles">
 			<h1>Blangonga</h1>
 			<address>
 				From:
@@ -35,7 +35,7 @@
 			<p>Blangonga live almost exclusively in the <a href="http://monsterhunter.wikia.com/wiki/Snowy_Mountains" target="_blank">Snowy Mountains</a>. Their thick coat keeps them warm and serves as the perfect camouflage.</p>
 		</div>
 
-		<div id="articleTigrex">
+		<div id="articleTigrex" class="articles">
 			<h1>Tigrex</h1>
 			<address>
 				From:
@@ -58,45 +58,46 @@
 			</ul>
 		</div>
 
-		<div id="pictures">
+		<div id="pictures" class="articles">
 			<h1>Pitures</h1>
 			<hr />
 			<p>
 				Blangonga
 				<br />
 				<img src="../res/FrontierGen-HC_Blangonga_Render_001_(Edited).png">
-				<br />
 			</p>
+			<br />
 
 			<p>
 				Blangonga
 				<br />
 				<img src="../res/Unknown.jpg">
-				<br />
 			</p>
+			<br />
 
 			<p>
 				Tigrex
 				<br />
 				<img src="../res/95-1404141K233F4.jpeg">
-				<br />
 			</p>
+			<br />
 
 			<p>
 				Tigrex
 				<br />
 				<img src="../res/505469.jpg">
-				<br />
 			</p>
+			<br />
 
 			<p>
 				Tigrex
 				<br />
 				<img src="../res/MHRoC-Tigrex_Art_001.jpg">
 			</p>
+				<br />
 		</div>
 
-		<div id="articleWeapons">
+		<div id="articleWeapons" class="articles">
 			<h1>My Prefer Weapons</h1>
 			<hr />
 			<h2>Lance, Light Bowgun then Long sword</h2>
@@ -110,10 +111,10 @@
 			</p>
 			<h2>Lance Damage</h2>
 			<p>
-			<table>
+			<table cellspacing="0" style="width:100%">
 				<tr>
-					<th>Attack</th>
-					<th>Damage</th>
+					<th class="bBlackFWhite">Attack</th>
+					<th class="bBlackFWhite">Damage</th>
 				</tr>
 				<tr>
 					<td>Unsheathe Attack</td>
@@ -139,48 +140,75 @@
 			</p>
 		</div>
 
-		<div id="information">
+		<div id="information" class="articles">
 			<h1>Information</h1>
-			<h2>User Information</h2>
 			<form method="post" action="save.php">
-				Email: 
-				<input type="text" name="email"/>
-				<br />
-				Please type in the correct email form.
-				<br />
-				Password:
-				<input type="password" name="password"/>
-				Confirm: 
-				<input type="password" name="password"/>
-				<br />
-				Please use numbers, length within 6-16 digits.
-				<br />
-				<label>Gender: </label>
-				<input type="radio" value="1" name="gender" id="male" checked="checked"/>
-				<label for="male">Male</label>
-				<input type="radio" value="2" name="gender" id="female"/>
-				<label for="female">Female</label>
-				<label>City</label>
-				<select>
-					<option value="Beijing">Beijing</option>
-					<option value="Chengdu">Chengdu</option>
-					<option value="Xi'an">Xi'an</option>
-					<option value="Melbourne" selected="selected">Melbourne</option>
-				</select>
-				<label>Hobbies</label>
-				<input type="checkbox" value="1" name="hobbies" id="sports"/>
-				<label for="sports">sports</label>
-				<input type="checkbox" value="2" name="hobbies" id="arts"/>
-				<label for="arts">arts</label>
-				<input type="checkbox" value="3" name="hobbies" id="science"/>
-				<label for="science">science</label>
-				<label>Description</label>
-				<textarea cols="12" rows="2">Your description</textarea>
-				<input type="submit" value="submit" name="submitBtn" />
+				<table id="infoTable" width="100%">
+					<tr>
+						<td class="setRight firstTd">Email:</td>
+						<td class="secondTd"><input type="text" name="email"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="setGrey">Please type in the correct email form.</td>
+					</tr>
+					<tr>
+						<td class="setRight">Password:</td>
+						<td><input type="password" name="password"/></td>
+					</tr>
+					<tr>
+						<td class="setRight">Confirm:</td>
+						<td><input type="password" name="password"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="setGrey">Please use numbers, length within 6-16 digits.</td>
+					</tr>
+					<tr>
+						<td class="setRight">Gender:</td>
+						<td>
+							<input type="radio" value="1" name="gender" id="male" checked="checked"/>
+							<label for="male">Male</label>
+							<input type="radio" value="2" name="gender" id="female"/>
+							<label for="female">Female</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="setRight">City</td>
+						<td>
+							<select>
+								<option value="Beijing">Beijing</option>
+								<option value="Chengdu">Chengdu</option>
+								<option value="Xi'an">Xi'an</option>
+								<option value="Melbourne" selected="selected">Melbourne</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="setRight">Hobbies</td>
+						<td>
+							<input type="checkbox" value="1" name="hobbies" id="sports"/>
+							<label for="sports">sports</label>
+							<input type="checkbox" value="2" name="hobbies" id="arts"/>
+							<label for="arts">arts</label>
+							<input type="checkbox" value="3" name="hobbies" id="science"/>
+							<label for="science">science</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="setRight">Description</td>
+						<td>
+							<textarea cols="100" rows="5">Your description</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="submit" name="btnSubmit" id="btnSubmit"/></td>
+					</tr>
+				</table>
 			</form>
 		</div>
 
-		<footer>
+		<footer class="bBlackFWhite">
 			copyright©benjamin
 		</footer>
 	</body>
