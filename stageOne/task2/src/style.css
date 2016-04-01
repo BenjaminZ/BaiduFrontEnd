@@ -1,0 +1,41 @@
+#outterContainer{
+	background-color:#eee;
+	border:solid thin #999;
+	padding:20px;
+	position:relative;
+	overflow:auto;
+}
+.innerContainer{
+	background-color:#fff;
+	border:solid thin #999;
+}
+#team{
+	margin-right:20px;
+	float:left;
+	padding:20px;
+}
+#team img{
+	padding-right:20px;
+}
+#team p{
+	background:pink;
+	display:inline-block;
+	width:80px;
+	max-height:80px;
+	vertical-align:top;
+	margin:0px;
+}
+#article{
+	padding:20px;
+	margin-left:260px;
+	margin-right:160px;
+	top:20px;	
+}
+#member{
+	display:inline-block;
+	float:right;
+}
+#member img{
+	display:block;
+	padding:20px;
+}
