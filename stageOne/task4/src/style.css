@@ -1,0 +1,28 @@
+#background{
+}
+.rectangle{
+	background-color:#ccc;
+	height:200px;
+	width:400px;
+	position:absolute;
+	overflow:hidden;
+	left:50%;
+	top:50%;
+	margin-top:-100px;
+	margin-left:-200px;
+}
+.circle{
+	border-radius:4em;
+	background:#fc0;
+	width:100px;
+	height:100px;
+	position:absolute;
+}
+#topleft{
+	top:-50px;
+	left:-50px;
+}
+#bottomright{
+	bottom:-50px;
+	right:-50px;
+}
