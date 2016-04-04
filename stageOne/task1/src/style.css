@@ -2,8 +2,16 @@
 	padding:10px 40px;
 	display:inline-block;
 }
+header{
+	width:100%;
+	position:relative;
+}
 header ul{
-	float:right;
+	margin:0;
+	position:absolute;
+	top:50%;
+	right:0;
+	transform:translateY(-50%);
 }
 header li {
 	float:left;
@@ -13,29 +21,49 @@ header a{
 	text-decoration:none;
 	color:white;
 }
+header a:hover{
+	text-decoration:none;
+	color:red;
+}
 body{
 	background:lightgrey;
 }
-footer{
+footer p{
 	text-align:center;
 	display:block;
 	padding-top:10px;
 	padding-bottom:10px;
+}
+.main{
+	display:table;
+	width:100%;
+}
+.mainContent{
+	display:table-cell;
+}
+.sidebar{
+	vertical-align:top;
+	display:table-cell;
+	width:400px;
 }
 .articles{
 	border-style: outset;
 	border-top: thin;		
 	border-left: thin;
 	background:white;
-	margin:20px 20px;			
-	padding: 20px 15px;
+	margin:20px;			
+	padding: 20px;
 }
-#pictures>p{
+#pictures .images{
 	border: solid thin;
 	display: inline-block;
 	padding:10px;	
 	text-align: center;
-	margin-left: 40px;
+	padding:10px;
+	margin:20px;
+}
+#pictures label{
+	display:block;
 }
 #articleWeapons>table{
 	border:thin solid lightgrey;
@@ -49,7 +77,7 @@ footer{
 	border:thin solid lightgrey;
 }
 #information{
-   font-size:12px;
+	font-size:12px;
 }   
 #information>h1{
 	border-left:solid grey;
@@ -57,6 +85,13 @@ footer{
 }
 .setRight{
 	text-align:right;
+}
+.setTop{
+	vertical-align:top;
+}
+#information textarea{
+	height:auto;
+	width:100%;
 }
 #btnSubmit{
 	width:100%;
