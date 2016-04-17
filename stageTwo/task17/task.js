@@ -56,12 +56,38 @@ var pageState = {
     nowGraTime: "day"
 };
 
+function getChartData() {
+    return chartData[pageState.nowSelectCity][pageState.nowGraTime];
+}
+function getBlockHeight(current, max) {
+    return (current * 100 / max).toString() + "%";
+}
+function getBlockBackgroundColor() {
+    return "#" + (Math.round(Math.random() * 0xffffff)).toString(16);
+}
 /**
  * 渲染图表
  */
 function renderChart() {
-    for (var e in pageState) {
-        console.log(pageState[e]);
+    var container = $(".aqi-chart-wrap");
+    container.html("");
+    var dataObj = getChartData();
+    //get the max value
+    var dataArray = Object.keys(dataObj).map(function (key) {
+        return dataObj[key];
+    });
+    var max = dataArray.sort(function (e1, e2) {
+        return parseInt(e2) - parseInt(e1);
+    })[0];
+    // console.log();
+    //
+    for (var key in dataObj) {
+        var block = document.createElement("b");
+        block.style.flex = "1";
+        block.style.height = getBlockHeight(dataObj[key], max);
+        block.style.backgroundColor = getBlockBackgroundColor();
+        block.setAttribute("title", key);
+        container.append(block);
     }
 }
 
@@ -195,9 +221,6 @@ function showAqiData() {
     console.log(Object.keys(aqiSourceData[0]).length);
 }
 function showChartData() {
-    // for (var e in chartData["北京"]["month"]) {
-    //     console.log(e + ": " + chartData["北京"]["month"]["2016-01-01"]);
-    // }
     console.log(chartData);
 }
 /**
@@ -208,5 +231,5 @@ $(function init() {
     initCitySelector();
     initAqiChartData();
     // showAqiData();
-    showChartData();
+    // showChartData();
 });

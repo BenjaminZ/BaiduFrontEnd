@@ -1,0 +1,13 @@
+.aqi-chart-wrap {
+    height: 30em;
+    margin: 2em 1em;
+    padding: 2em 1em 0 1em;
+    border: thin solid;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+.aqi-chart-wrap b {
+    border: solid thin;
+}
