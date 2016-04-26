@@ -89,6 +89,10 @@ body > .wrapper {
     width: 203px;
     border-top: solid 2px #cc8091;
     margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .firstRow .aboutTechnology {
