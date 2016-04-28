@@ -8,7 +8,7 @@
  * Data of numbers.
  * @type {Array} array of index to numbers.
  */
-var data = new Array();
+var data = [];
 
 /**
  * Input text.
@@ -24,7 +24,7 @@ function isNum(text) {
  * @param target the event target.
  */
 function pushNum(target) {
-    var num = $("#number").text();
+    var num = $("#number").val().trim();
     // if input is not number
     if (!isNum(num)) {
         return;
@@ -53,9 +53,27 @@ function updatePop(target, num) {
     }
     var output = $("#output");
     if ($(target).hasClass("left")) {
-        output.remove(":first-child");
+        output.find(":first-child").remove();
     } else {
-        output.remove(":last-child");
+        output.find(":last-child").remove();
+    }
+}
+function updatePush(target) {
+    var num = $("#number").val().trim();
+    if (!isNum(num)) {
+        return;
+    }
+    var block = document.createElement("b");
+    block.style.backgroundColor = "#ff0000";
+    block.style.marginLeft = "5px";
+    block.style.padding = "5px";
+    block.style.color = "white";
+    block.textContent = num;
+    var output = $("#output");
+    if ($(target).hasClass("left")) {
+        output.prepend(block);
+    } else {
+        output.append(block);
     }
 }
 /**
@@ -74,8 +92,11 @@ function buttonOnClick() {
             if ($(target).hasClass("push")) {
                 pushNum(target);
                 updatePush(target);
+                $("#number").val("");
             } else {
-                updatePop(target, popNum(target));
+                var num = popNum(target);
+                updatePop(target, num);
+                alert(num);
             }
         }
     });
