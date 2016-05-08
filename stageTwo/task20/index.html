@@ -9,12 +9,23 @@
 </head>
 <body>
 <div id="inputs">
-    <label for="number">请输入数字: </label>
-    <input type="text" id="number">
-    <button class="push left">左侧入</button>
-    <button class="push right">右侧入</button>
-    <button class="pop left">左侧出</button>
-    <button class="pop right">右侧出</button>
+    <dl>
+        <dd class="input">
+            <label for="input_text">请输入文本: </label>
+            <textarea name="text" id="input_text" cols="30" rows="10"></textarea>
+            <div class="buttons">
+                <button class="push left">左侧入</button>
+                <button class="push right">右侧入</button>
+                <button class="pop left">左侧出</button>
+                <button class="pop right">右侧出</button>
+            </div>
+        </dd>
+        <dd class="search">
+            <label for="search">请输入查询内容: </label>
+            <input type="text" id="search">
+            <button class="search_text">查询</button>
+        </dd>
+    </dl>
 </div>
 <div id="output"></div>
 </body>

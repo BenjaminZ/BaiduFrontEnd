@@ -10,29 +10,33 @@
  */
 var data = [];
 
-/**
- * Input text.
- * @param text
- * @returns {boolean} true if text is numbers. False otherwise.
- */
-function isValidNum(text) {
-    return /^\d+$/.test(text);
+function getInputs(input) {
+    var pattern = new RegExp(/[0-9a-zA-Z\u4e00-\u9fa5]+/, "g");
+    var inputs = input.match(pattern);
+    return inputs;
+}
+function putLeft(inputs) {
+    for (var i = inputs.length - 1; i >= 0; i--) {
+        data.unshift(inputs[i]);
+    }
 }
 
+function putRight(inputs) {
+    inputs.map((x)=>(data.push(x)));
+}
 /**
  * Push number into data.
  * @param target the event target.
  */
-function pushNum(target) {
-    var num = $("#number").val().trim();
+function pushStr(target, inputs) {
     if ($(target).hasClass("left")) {
-        data.unshift(num);
-    } else {
-        data.push(num);
+        putLeft(inputs);
+    } else if ($(target).hasClass("right")) {
+        putRight(inputs);
     }
 }
 
-function popNum(target) {
+function popStr(target) {
     if (data.length === 0) {
         return NaN;
     }
@@ -64,7 +68,8 @@ function getNumBlock(num) {
     return block;
 }
 
-function updatePush(target) {
+function updatePush(target, inputs) {
+    // TODO update function
     var num = $("#number").val().trim();
     var block = getNumBlock(num);
     var output = $("#output");
@@ -89,16 +94,19 @@ function buttonOnClick() {
         if (target.nodeName === "BUTTON") {
             // which operation
             if ($(target).hasClass("push")) {
-                var num = $("#number").val().trim();
-                if (!isValidNum(num)) {
+                var inputArea = $("#input_text");
+                var input = inputArea.val().trim();
+                var inputs = getInputs(input);
+                if (inputArea.val().length == 0) {
                     return;
                 }
-                pushNum(target);
-                updatePush(target);
-                $("#number").val("");
+                pushStr(target, inputs);
+                // TODO
+                updatePush(target, inputs);
+                inputArea.val("");
             } else if ($(target).hasClass("pop")) {
-                var num = popNum(target);
-                updatePop(target, num);
+                var str = popStr(target);
+                updatePop(target, str);
             }
         }
     });

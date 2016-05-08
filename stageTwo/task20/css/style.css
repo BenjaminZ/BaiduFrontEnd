@@ -1,7 +1,17 @@
-.left, .sort {
-    margin-left: 10px;
+.input {
+    display: flex;
 }
 
-#output {
-    margin-top: 10px;
+.input textarea,div {
+    margin-left: 10px;
+}
+.buttons button{
+    display: block;
+    margin-bottom: 10px;
+}
+dd {
+    margin: 20px;
+}
+.search input,button {
+    margin-left: 10px;
 }
