@@ -16,9 +16,12 @@ var data = [];
  * @returns {boolean} true if text is numbers. False otherwise.
  */
 function isValidNum(text) {
-    return /^\d+$/.test(text);
+    return /^\d+$/.test(text) && text >= 10 && text <= 100;
 }
 
+function isFull() {
+    return data.length > 60;
+}
 /**
  * Push number into data.
  * @param target the event target.
@@ -63,10 +66,23 @@ function getNumBlock(num) {
     block.textContent = num;
     return block;
 }
-
+function getHeight(num) {
+    return num.toString() + "px";
+}
+function getColorBlock(num) {
+    var block = document.createElement("b");
+    block.style.display = "inline-block";
+    block.style.backgroundColor = "#ff0000";
+    block.style.marginLeft = "5px";
+    block.style.padding = "5px";
+    block.style.width = "10px";
+    block.style.height = getHeight(num);
+    return block;
+}
 function updatePush(target) {
     var num = $("#number").val().trim();
-    var block = getNumBlock(num);
+    // var block = getNumBlock(num);
+    var block = getColorBlock(num);
     var output = $("#output");
     if ($(target).hasClass("left")) {
         output.prepend(block);
@@ -74,7 +90,21 @@ function updatePush(target) {
         output.append(block);
     }
 }
-
+function sortArray() {
+    data.sort();
+}
+function updateOutput() {
+    var output = $("#output");
+    output.html("");
+    for (var i in data) {
+        var block = getColorBlock(data[i]);
+        output.append(block);
+    }
+}
+function sort() {
+    sortArray();
+    updateOutput();
+}
 /**
  * Call other function based on which button is clicked.
  */
@@ -91,6 +121,10 @@ function buttonOnClick() {
             if ($(target).hasClass("push")) {
                 var num = $("#number").val().trim();
                 if (!isValidNum(num)) {
+                    alert("请输入10到100");
+                    return;
+                } else if (isFull()) {
+                    alert("Array is full.")
                     return;
                 }
                 pushNum(target);
@@ -99,6 +133,8 @@ function buttonOnClick() {
             } else if ($(target).hasClass("pop")) {
                 var num = popNum(target);
                 updatePop(target, num);
+            } else if ($(target).hasClass("sort")) {
+                sort();
             }
         }
     });
