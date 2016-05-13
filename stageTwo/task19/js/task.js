@@ -90,20 +90,8 @@ function updatePush(target) {
         output.append(block);
     }
 }
-function sortArray() {
-    data.sort();
-}
-function updateOutput() {
-    var output = $("#output");
-    output.html("");
-    for (var i in data) {
-        var block = getColorBlock(data[i]);
-        output.append(block);
-    }
-}
 function sort() {
-    sortArray();
-    updateOutput();
+    
 }
 /**
  * Call other function based on which button is clicked.
