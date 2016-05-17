@@ -24,9 +24,10 @@ function preOder(self, target) {
     divList.push(s);
     var children = self.children;
     for (var i in children) {
-        if (children[i].nodeName === "SPAN" && children[i].innerText.toLowerCase() === target.toLowerCase()) {
-            isTarget = true;
+        if (isTarget) {
             break;
+        } else if (children[i].nodeName === "SPAN" && children[i].innerText.toLowerCase() === target.toLowerCase()) {
+            isTarget = true;
         } else if (children[i].nodeName === "DIV") {
             preOder(children[i], target);
         }
