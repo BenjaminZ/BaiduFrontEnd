@@ -9,21 +9,28 @@ var output = document.getElementsByClassName("output")[0];
 var divList = [];
 var timer;
 var milSeconds = 500;
-var numOfLayers = 5;
+var isTarget = false;
 
 function bindButtons() {
-    var wrap = document.getElementsByClassName("buttons")[0];
+    var wrap = document.getElementsByClassName("inputs")[0];
     wrap.addEventListener("click", buttonOnClick, false);
 }
 
-function preOder(self) {
+function preOder(self, target) {
     var s = self;
     if (!s) {
         return;
     }
     divList.push(s);
-    preOder(s.firstChild);
-    preOder(s.lastChild);
+    var children = self.children;
+    for (var i in children) {
+        if (children[i].nodeName === "SPAN" && children[i].innerText.toLowerCase() === target.toLowerCase()) {
+            isTarget = true;
+            break;
+        } else if (children[i].nodeName === "DIV") {
+            preOder(children[i], target);
+        }
+    }
 }
 
 function oderDisplay() {
@@ -36,6 +43,9 @@ function oderDisplay() {
         divList[i].style.backgroundColor = "white";
         i++;
         if (i >= divList.length) {
+            if (isTarget) {
+                divList[i - 1].style.backgroundColor = "green";
+            }
             clearInterval(timer);
         } else {
             divList[i].style.backgroundColor = "blue";
@@ -44,14 +54,18 @@ function oderDisplay() {
 }
 function initDisplay() {
     clearInterval(timer);
+    isTarget = false;
     divList.map((e)=> {
         e.style.backgroundColor = "white";
     });
     divList = [];
 }
+function getSearchContent() {
+    return document.getElementById("searchText").value.trim();
+}
 function preOderOnClick() {
     initDisplay();
-    preOder(output.children[0]);
+    preOder(output, getSearchContent());
     oderDisplay();
 }
 function buttonOnClick(event) {
@@ -63,27 +77,7 @@ function buttonOnClick(event) {
     }
 }
 
-function displayTree(parent, layers) {
-    var n = layers;
-    var p = parent || output;
-    var self = document.createElement("div");
-    self.style.margin = "5px 3px";
-    self.style.border = "solid thin";
-    self.style.display = "inline-block";
-    self.style.backgroundColor = "white";
-    if (n > 1) {
-        p.appendChild(self);
-        displayTree(self, n - 1);
-        displayTree(self, n - 1);
-    } else {
-        self.style.height = "16px";
-        self.style.width = "9px";
-        p.appendChild(self);
-    }
-}
-
 (()=> {
     bindButtons();
-    displayTree(null, numOfLayers);
 })();
 
