@@ -1,3 +1,6 @@
+.inputs section {
+    margin: 5px 1px;
+}
 .output, .output div {
     margin: 5px 1px;
     display: flex;

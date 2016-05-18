@@ -10,10 +10,31 @@ var divList = [];
 var timer;
 var milSeconds = 500;
 var isTarget = false;
+var selectedList = [];
 
-function bindButtons() {
-    var wrap = document.getElementsByClassName("inputs")[0];
-    wrap.addEventListener("click", buttonOnClick, false);
+function unSelect() {
+    selectedList.map((e)=> {
+        e.style.backgroundColor = "white";
+    });
+    selectedList = [];
+}
+function select(target) {
+    selectedList.push(target);
+    target.style.backgroundColor = "green";
+}
+function outputOnClick(event) {
+    stopSearching();
+    unSelect();
+    var target = event.target;
+    if (target.nodeName === "SPAN") {
+        target = target.parentElement;
+    }
+    select(target);
+}
+function bindOnClicks() {
+    var inputs = document.getElementsByClassName("inputs")[0];
+    inputs.addEventListener("click", buttonOnClick, false);
+    output.addEventListener("click", outputOnClick, false);
 }
 
 function preOder(self, target) {
@@ -28,6 +49,7 @@ function preOder(self, target) {
             break;
         } else if (children[i].nodeName === "SPAN" && children[i].innerText.toLowerCase() === target.toLowerCase()) {
             isTarget = true;
+            selectedList.push(children[i].parentElement);
         } else if (children[i].nodeName === "DIV") {
             preOder(children[i], target);
         }
@@ -53,7 +75,7 @@ function oderDisplay() {
         }
     }, milSeconds);
 }
-function initDisplay() {
+function stopSearching() {
     clearInterval(timer);
     isTarget = false;
     divList.map((e)=> {
@@ -65,20 +87,55 @@ function getSearchContent() {
     return document.getElementById("searchText").value.trim();
 }
 function preOderOnClick() {
-    initDisplay();
+    unSelect();
     preOder(output, getSearchContent());
     oderDisplay();
 }
+function deleteOnClick() {
+    var selected = selectedList.pop();
+    if (!selected) {
+        return;
+    }
+    selected.parentElement.removeChild(selected);
+}
+function getNewElement() {
+    var input = document.getElementById("addText").value.trim();
+    var element = document.createElement("div");
+    var content = document.createElement("span");
+    content.innerText = input;
+    element.appendChild(content);
+    return element;
+}
+function addOnClick() {
+    var newElement = getNewElement();
+    if (!newElement) {
+        return;
+    }
+    var selected = selectedList[selectedList.length - 1];
+    if (!selected) {
+        return;
+    }
+    selected.appendChild(newElement);
+    unSelect();
+    select(newElement);
+}
 function buttonOnClick(event) {
+    stopSearching();
     var id = event.target.getAttribute("id");
     switch (id) {
-        case "#pre-oder":
+        case "pre-oder":
             preOderOnClick();
+            break;
+        case "delete":
+            deleteOnClick();
+            break;
+        case "add":
+            addOnClick();
             break;
     }
 }
 
 (()=> {
-    bindButtons();
+    bindOnClicks();
 })();
 

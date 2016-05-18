@@ -109,9 +109,9 @@ function graTimeChange(node) {
  */
 function citySelectChange(jNode) {
     // 确定是否选项发生了变化
-    if (jNode.find(":selected")[0].text != pageState.nowSelectCity) {
+    if (jNode.find(":selectedList")[0].text != pageState.nowSelectCity) {
         // 设置对应数据
-        pageState.nowSelectCity = jNode.find(":selected")[0].text;
+        pageState.nowSelectCity = jNode.find(":selectedList")[0].text;
         // 调用图表渲染函数
         renderChart();
     }
