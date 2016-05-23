@@ -134,7 +134,7 @@ function initGraTimeForm() {
  */
 function initCitySelector() {
     // 读取aqiSourceData中的城市，然后设置id为city-select的下拉列表中的选项
-    var select = $("#city-select");
+    var select = $("#city-selectOnClick");
     for (var e in aqiSourceData) {
         var newOption = document.createElement("option");
         newOption.appendChild(document.createTextNode(e));
