@@ -39,7 +39,7 @@ function bindEvents() {
     output.addEventListener("click", selectOnClick, false);
 }
 
-function isFileOrFolder(node) {
+function isItem(node) {
     if (!node) {
         return;
     }
@@ -58,7 +58,7 @@ function openFolder(node) {
     // console.log("open " + node.lastChild.innerText);
     var children = node.children;
     for (var i in children) {
-        if (children.hasOwnProperty(i) && isFileOrFolder(children[i])) {
+        if (children.hasOwnProperty(i) && isItem(children[i])) {
             children[i].style.display = "block";
         }
     }
@@ -133,13 +133,71 @@ function select(head) {
     head.style.color = "white";
 }
 
+function newFileIcon(parent) {
+    var fileIcon = document.createElement("span");
+    fileIcon.setAttribute("class", "glyphicon glyphicon-file");
+    fileIcon.style.marginLeft = getGap(parent);
+    return fileIcon;
+}
+function newFileHead(name, parent) {
+    var head = document.createElement("div");
+    head.setAttribute("class", "head");
+    head.appendChild(newFileIcon(parent));
+    head.appendChild(newItemName(name));
+    return head;
+}
+function createFile(name, parent) {
+    if (!name || !parent) {
+        return;
+    }
+    var file = document.createElement("div");
+    file.setAttribute("class", "file");
+    file.appendChild(newFileHead(name, parent));
+    file.style.backgroundColor = "white";
+    return file;
+}
+function addFile(name, parent) {
+    openFolder(parent);
+    var newFile = createFile(name, parent);
+    parent.appendChild(newFile);
+    deselect();
+    select(newFile.firstChild);
+    return newFile;
+}
 function addFileButtonOnClick() {
-    // TODO
-    console.log("add file");
+    // console.log("add file");
+    var name=document.getElementById("inputText").value;
+    if (!selectedItem || !name || !selectedItem.parentNode.classList.contains("folder")) {
+        return;
+    }
+    var target = selectedItem.parentNode;
+    addFile(name, target);
+}
+function searchItem(name, self) {
+    if (self.querySelector(".name").innerText===name) {
+        select(self.firstChild);
+        return;
+    }
+    var children=self.children;
+    for (var i in children) {
+        if (children.hasOwnProperty(i) && isItem(children[i])) {
+            searchItem(name, children[i]);
+        }
+        if (selectedItem) {
+            break;
+        }
+    }
 }
 function searchButtonOnClick() {
     // TODO
-    console.log("search");
+    // console.log("search");
+    var name = document.getElementById("inputText").value;
+    if (!name) {
+        return;
+    }
+    var target = selectedItem || root.firstChild;
+    deselect();
+    searchItem(name, target.parentNode);
 }
 function deleteItem(item) {
     if (!item || item.parentNode.getAttribute("id") === "output") {
@@ -166,7 +224,7 @@ function addFolder(name, parent) {
 function addFolderButtonOnClick() {
     // console.log("add folder");
     var name = document.getElementById("inputText").value;
-    if (!selectedItem || !name) {
+    if (!selectedItem || !name || !selectedItem.parentNode.classList.contains("folder")) {
         return;
     }
     var target = selectedItem.parentNode;
@@ -205,7 +263,7 @@ function newFolderIcon() {
     folderIcon.style.marginLeft = defaultPlusFolderGap;
     return folderIcon;
 }
-function newFolderName(name) {
+function newItemName(name) {
     if (!name) {
         return;
     }
@@ -216,12 +274,12 @@ function newFolderName(name) {
     folderName.style.marginRight = defaultInitialGap.toString() + "px";
     return folderName;
 }
-function newHead(name, parent) {
+function newFolderHead(name, parent) {
     var head = document.createElement("div");
     head.setAttribute("class", "head");
     head.appendChild(newPlusIcon(parent));
     head.appendChild(newFolderIcon());
-    head.appendChild(newFolderName(name));
+    head.appendChild(newItemName(name));
     return head;
 }
 function createFolder(name, parent) {
@@ -230,7 +288,7 @@ function createFolder(name, parent) {
     }
     var folder = document.createElement("div");
     folder.setAttribute("class", "folder");
-    folder.appendChild(newHead(name, parent));
+    folder.appendChild(newFolderHead(name, parent));
     folder.style.backgroundColor = "white";
     return folder;
 }
@@ -242,10 +300,17 @@ function addRoot() {
 }
 function displayExamples() {
     var auFood = addFolder("australia_food", root);
-    var good = addFolder("good", auFood);
-    var bad = addFolder("bad", auFood);
-    var tasty = addFolder("tasty", good);
+    var auGood = addFolder("good", auFood);
+    var chocolate = addFile("chocolate", auGood);
+    var auBad = addFolder("bad", auFood);
+    var plumbPudding = addFile("plumb_pudding", auBad);
+    var dimSim = addFile("dim_sim", auFood);
+    var tasty = addFolder("tasty", auGood);
+    var chocCake = addFile("chocolate_cake", tasty);
     var cnFood = addFolder("chinese_food", root);
+    var cnGood = addFolder("good", cnFood);
+    var allGood = addFile("all_good", cnGood);
+    var cnBad = addFolder("bad", cnFood);
     deselect();
 }
 function setGapStep() {
