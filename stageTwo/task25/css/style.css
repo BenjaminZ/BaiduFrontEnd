@@ -1,0 +1,19 @@
+#input, #output {
+    margin: 20px 5px 20px 5px;
+}
+
+#input {
+    display: flex;
+    justify-content: center;
+}
+
+#output {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.folder {
+    display: flex;
+    flex-direction: column;
+}

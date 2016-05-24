@@ -82,9 +82,13 @@ function renderChart() {
     // console.log();
     //
     for (var key in dataObj) {
+        if (!dataObj.hasOwnProperty(key)) {
+            return;
+        }
         var block = document.createElement("b");
         block.style.flex = "1";
         block.style.height = getBlockHeight(dataObj[key], max);
+        block.style.maxWidth = "200px";
         block.style.backgroundColor = getBlockBackgroundColor();
         block.setAttribute("title", key);
         container.append(block);
@@ -109,9 +113,9 @@ function graTimeChange(node) {
  */
 function citySelectChange(jNode) {
     // 确定是否选项发生了变化
-    if (jNode.find(":selected")[0].text != pageState.nowSelectCity) {
+    if (jNode.find(":selected").text() != pageState.nowSelectCity) {
         // 设置对应数据
-        pageState.nowSelectCity = jNode.find(":selected")[0].text;
+        pageState.nowSelectCity = jNode.find(":selected").text();
         // 调用图表渲染函数
         renderChart();
     }
@@ -136,9 +140,11 @@ function initCitySelector() {
     // 读取aqiSourceData中的城市，然后设置id为city-select的下拉列表中的选项
     var select = $("#city-select");
     for (var e in aqiSourceData) {
-        var newOption = document.createElement("option");
-        newOption.appendChild(document.createTextNode(e));
-        select.append(newOption);
+        if (aqiSourceData.hasOwnProperty(e)) {
+            var newOption = document.createElement("option");
+            newOption.appendChild(document.createTextNode(e));
+            select.append(newOption);
+        }
     }
     pageState.nowSelectCity = select.find(":first-child")[0].text;
     // 给select设置事件，当选项发生变化时调用函数citySelectChange
@@ -183,6 +189,9 @@ function setMonthData(data, cityName) {
     var i = 0;
     var dayCounter = 0;
     for (var d in rawData) {
+        if (!rawData.hasOwnProperty(d)) {
+            break;
+        }
         sum += rawData[d];
         i++;
         dayCounter++;

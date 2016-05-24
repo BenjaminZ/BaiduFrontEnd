@@ -1,0 +1,219 @@
+.sim_hei {
+    font-family: SimHie, serif;
+}
+
+.ya_hei {
+    font-family: "Microsoft YaHei", serif;
+}
+
+.sim_sun {
+    font-family: SimSun, serif;
+}
+
+.kai_ti {
+    font-family: KaiTi, serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #999999;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+body > .wrapper {
+    height: 1386px;
+    max-width: 980px;
+    background-color: white;
+    padding: 0 44px;
+}
+
+.topHeader {
+    font-family: SimHei, serif;
+    font-size: 12px;
+    border-bottom: solid 2px #938e8c;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.topHeader .wrapper {
+    display: table;
+}
+
+.topHeader .head {
+    display: table-cell;
+    padding: 1px 3px;
+    height: 60px;
+    width: 107px;
+    background-color: #cd5c5c;
+    color: white;
+    vertical-align: bottom;
+}
+
+.topHeader .date {
+    color: #cd4a48;
+}
+
+.firstRow .wrapperImg {
+    background: url("../img/pic1.png");
+    height: 301px;
+    width: 641px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.firstRow .wrapperImg div {
+    height: 100%;
+    width: 191px;
+}
+
+.firstRow .wrapperImg .green {
+    background-color: #75b86b;
+    opacity: 0.5;
+}
+
+.firstRow .wrapperImg .red {
+    background-color: indianred;
+    opacity: 0.5;
+}
+
+.firstRow {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.firstRow aside {
+    width: 203px;
+    border-top: solid 2px #cc8091;
+    margin-left: 30px;
+}
+
+.firstRow h1 {
+    font-size: 24px;
+    font-family: "Microsoft YaHei", serif;
+    font-variant: small-caps;
+    text-decoration: underline;
+}
+
+.firstRow .about {
+    margin: 5px 0 0 0;
+}
+
+.firstRow .tech {
+    margin: 0 0 5px 0;
+}
+
+.firstRow .aboutTechnology h1 b {
+    font-size: 24px;
+}
+
+.firstRow .aboutTechnology {
+    margin: 10px 0 40px 0;
+    font-size: 12px;
+    color: #676767;
+    font-family: KaiTi, serif;
+}
+
+.firstRow aside .n700 {
+    font-family: "Microsoft YaHei", serif;
+    font-size: 116px;
+    color: #75b86b;
+    font-style: oblique;
+    font-weight: bold;
+    margin-left: -20px;
+}
+
+.firstRow aside .n32, .numWrapper{
+    display: inline-block;
+}
+
+.firstRow aside .n32 {
+    margin: 0;
+    font-size: 55px;
+    font-family: "Microsoft YaHei", serif;
+    color: #cc8091;
+}
+
+.firstRow aside .redCss {
+    font-size: 21px;
+    font-family: "Microsoft YaHei", serif;
+    color: #cc8091;
+}
+
+.firstRow aside .smallCss {
+    font-size: 12px;
+    font-family: "Microsoft YaHei", serif;
+    color: #676767;
+}
+
+.secondRow {
+    display: flex;
+    width: 641px;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.secondRow article h1 {
+    margin: 16px 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.secondRow .what {
+    flex: 4;
+    margin-right: 16px;
+}
+
+.secondRow .what h1 {
+    color: #75b86b;
+}
+
+.secondRow .when h1 {
+    color: #d2994f;
+}
+
+.secondRow .how h1 {
+    color: #cc7680;
+}
+
+.secondRow .when {
+    flex: 4;
+    margin-right: 16px;
+}
+
+.secondRow .how {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 3;
+    margin-right: 16px;
+}
+
+.secondRow p, table {
+    font-size: 12px;
+    color: #231815;
+    font-family: "Microsoft YaHei", serif;
+    opacity: 0.7;
+}
+
+.secondRow .how table {
+    border-spacing: 0;
+}
+
+.secondRow .how table td {
+    padding: 5px 0;
+    margin: 0;
+}
+
+.secondRow .how table .num {
+    padding: 5px 2px;
+    color: #cd4a48;
+    font-style: italic;
+}

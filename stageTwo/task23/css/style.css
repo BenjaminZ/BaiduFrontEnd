@@ -1,0 +1,16 @@
+.inputs section {
+    margin: 5px 1px;
+}
+.output, .output div {
+    margin: 5px 1px;
+    display: flex;
+    border: solid thin;
+    width: 100%;
+    justify-content: space-around;
+    align-items: stretch;
+    background-color: white;
+}
+
+.output span {
+    margin: 5px 5px;
+}

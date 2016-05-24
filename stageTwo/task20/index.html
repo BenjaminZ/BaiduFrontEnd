@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <script src="//code.jquery.com/jquery-2.0.0.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="js/task.js"></script>
+    <title>task18</title>
+</head>
+<body>
+<div id="inputs">
+    <dl>
+        <dd class="input">
+            <label for="input_text">请输入文本: </label>
+            <textarea name="text" id="input_text" cols="30" rows="10"></textarea>
+            <div class="buttons">
+                <button class="push left">左侧入</button>
+                <button class="push right">右侧入</button>
+                <button class="pop left">左侧出</button>
+                <button class="pop right">右侧出</button>
+                <button class="clear">清空</button>
+            </div>
+        </dd>
+        <dd class="search">
+            <label for="search_text">请输入查询内容: </label>
+            <input type="text" id="search_text">
+            <button class="search_button">查询</button>
+            <button class="example_button">预设</button>
+        </dd>
+    </dl>
+</div>
+<div id="output"></div>
+</body>
+</html>
