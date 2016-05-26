@@ -1,0 +1,31 @@
+#wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+#tag > div {
+    margin: 10px;
+}
+
+#hobbiesInput {
+    display: block;
+}
+
+.tag {
+    display: inline-block;
+    background-color: lightblue;
+    color: white;
+    margin: 5px;
+    padding: 5px;
+}
+
+.tag:hover {
+    background-color: red;
+}
+
+.hobby {
+    display: inline-block;
+    background-color: coral;
+    margin: 5px;
+    padding: 5px;
+}
