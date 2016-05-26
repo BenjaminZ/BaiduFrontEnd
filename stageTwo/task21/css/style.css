@@ -26,4 +26,6 @@
 .hobby {
     display: inline-block;
     background-color: coral;
+    margin: 5px;
+    padding: 5px;
 }

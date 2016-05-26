@@ -10,6 +10,8 @@ var tagOutput = document.getElementById("tagOutput");
 var hobbyOutput = document.getElementById("hobbyOutput");
 var delInfo = "delete: ";
 var sampleTagNames = ["HTML5", "CSS", "JavaScript"];
+var sampleHobbyNames = ["Guitar", "LOL", "Programming", "Si-Fi"];
+var tagNumLimit = 10;
 
 (function init() {
     bindEvents();
@@ -59,6 +61,9 @@ function tagInputOninput() {
     var tag = tagInput.value.slice(0, tagInput.value.length - 1);
     tagInput.value = "";
     addTag(tag);
+    if (tagOutput.children.length > tagNumLimit) {
+        removeTag(tagOutput.querySelector(".tag"));
+    }
 }
 
 /**
@@ -77,8 +82,57 @@ function tagOnClick(event) {
     removeTag(event.target);
 }
 
+/**
+ * Split strings into Chinese/English sub strings
+ * @param inputText string to split
+ * @returns {Array|String} array of sub strings
+ */
+function getHobbies(inputText) {
+    var reg = /[^\u4E00-\u9FA5\w]+/;
+    return inputText.split(reg);
+}
+/**
+ * create a hobby div
+ * @param content a string to create with
+ * @returns {Element} a hobby div
+ */
+function createHobby(content) {
+    var hobby = document.createElement("div");
+    hobby.setAttribute("class", "hobby");
+    hobby.innerText = content;
+    return hobby;
+}
+
+/**
+ * add a hobby has input in it to output
+ * @param input a string to add a hobby
+ */
+function addHobby(input) {
+    if (!input) {
+        return;
+    }
+    var hobby = createHobby(input);
+    hobbyOutput.appendChild(hobby);
+}
+/**
+ * remove a hobby from hobby output
+ * @param hobby div to remove
+ */
+function removeHobby(hobby) {
+    hobbyOutput.removeChild(hobby);
+}
+/**
+ * add hobbies to output when confirm button click
+ */
 function confirmButtonOnclick() {
-    // TODO
+    // get hobbies from input without duplication
+    var hobbies = new Set(getHobbies(hobbiesInput.value));
+    hobbies.forEach((name)=> {
+        addHobby(name);
+        if (hobbyOutput.children.length > 10) {
+            removeHobby(hobbyOutput.querySelector(".hobby"));
+        }
+    });
 }
 
 /**
@@ -118,24 +172,32 @@ function tagOnmouseout(event) {
     var tag = event.target;
     unmarkTag(tag);
 }
+
+/**
+ * add tag when enter key pressed
+ * @param event enter key press event
+ */
+function tagOnEnterKeyPress(event) {
+    // based on browser
+    var key = event.which || event.keyCode;
+    // 13 is the code for enter
+    if (key === 13) {
+        var tag = tagInput.value.slice(0, tagInput.value.length);
+        tagInput.value = "";
+        addTag(tag);
+        if (tagOutput.children.length > tagNumLimit) {
+            removeTag(tagOutput.querySelector(".tag"));
+        }
+    }
+}
 /**
  * bind events
  */
 function bindEvents() {
-    // TODO
     // tag input text change event
     tagInput.addEventListener("input", tagInputOninput);
     // handles enter key press
-    tagInput.addEventListener("keypress", (e)=> {
-        // based on browser
-        var key = e.which || e.keyCode;
-        // 13 is the code for enter
-        if (key === 13) {
-            var tag = tagInput.value.slice(0, tagInput.value.length);
-            tagInput.value = "";
-            addTag(tag);
-        }
-    });
+    tagInput.addEventListener("keypress", tagOnEnterKeyPress);
     // tag hover event
     tagOutput.addEventListener("mouseover", tagOnmouseover);
     tagOutput.addEventListener("mouseout", tagOnmouseout);
@@ -150,9 +212,14 @@ function bindEvents() {
  * add sample tags
  */
 function addSampleTags() {
-    sampleTagNames.map((name)=>{
+    sampleTagNames.forEach((name)=> {
         addTag(name);
     })
+}
+function addSampleHobbies() {
+    sampleHobbyNames.forEach((name)=> {
+        addHobby(name);
+    });
 }
 /**
  * add samples when start
@@ -160,4 +227,5 @@ function addSampleTags() {
 function addSamples() {
     // TODO
     addSampleTags();
+    addSampleHobbies();
 }

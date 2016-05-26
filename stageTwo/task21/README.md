@@ -34,3 +34,9 @@ input.addEventListener("keypress", (e)=> {
 });
 </code></pre>
 * <code>mouseenter</code> and <code>mouseleave</code>: do not work on children. To work with children, use <code>mouseover</code> and <code>mouseout</code> instead.
+* <code>string.slice(-1)</code> last char.
+* Safari <code>version 9.1.1(11601.6.17)</code> does not support lambda.
+* Regular expression for Chinese characters: <code>
+/^[\u4E00-\u9FA5]+$/</code>, add <code>\w</code> for English characters.
+* <code>[^\w]+</code> to split a string into English sub strings.
+* <code>Array.map()</code> returns a new array while <code>Array.forEach</code> does not.
